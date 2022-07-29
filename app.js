@@ -10,13 +10,20 @@ function getComputerChoice() {
             computerChoice = "paper"
             break;
         case 3:
-            computerChoice = "scissor"
+            computerChoice = "scissors"
             break;
     }
     return computerChoice
 }
 
 function playRound(playerSelection, computerSelection) {
+    let wi = getWinner(playerSelection, computerSelection)
+    if (wi == "player") {
+        playerScore += 1
+    }
+    else if (wi == "comp") {
+        computerScore += 1
+    }
     if (r < 4) {
     let winStatement;
     console.log(playerSelection)
@@ -39,21 +46,21 @@ function playRound(playerSelection, computerSelection) {
     winAnnouncer.textContent = winStatement
 }
     else if (r == 4) {
-        // playerSelection = playerSelection.toLowerCase()
+        playerSelection = playerSelection.toLowerCase()
 
-        // results = getWinner(playerSelection, computerSelection)
+        results = getWinner(playerSelection, computerSelection)
     
-        // if (results == "player") {
-        //     winStatement = `You Won! ${playerSelection} beats ${computerSelection}`
-        // }
-        // else if (results == "comp") {
-        //     winStatement = `You Lost! ${computerSelection} beats ${playerSelection}`
-        // }
-        // else if (results == "tie") {
-        //     winStatement = `It's a tie! You both chose ${playerSelection}`
-        // }
-        // console.log(winStatement)
-        // winAnnouncer.textContent = winStatement
+        if (results == "player") {
+            winStatement = `You Won! ${playerSelection} beats ${computerSelection}`
+        }
+        else if (results == "comp") {
+            winStatement = `You Lost! ${computerSelection} beats ${playerSelection}`
+        }
+        else if (results == "tie") {
+            winStatement = `It's a tie! You both chose ${playerSelection}`
+        }
+        console.log(winStatement)
+        winAnnouncer.textContent = winStatement
     
         kill()
         if (playerScore > computerScore) {
@@ -95,7 +102,7 @@ function getWinner(playerChoice, computerChoice) {
             case "paper":
                 whoWon = "comp"
                 break
-            case "scissor":
+            case "scissors":
                 whoWon = "player"
                 break
         }
@@ -108,12 +115,12 @@ function getWinner(playerChoice, computerChoice) {
             case "paper":
                 whoWon = "tie"
                 break
-            case "scissor":
+            case "scissors":
                 whoWon = "comp"
                 break
         }
     }
-    else if (playerChoice == "scissor") {
+    else if (playerChoice == "scissors") {
         switch(computerChoice) {
             case "rock":
                 whoWon = "comp"
@@ -121,7 +128,7 @@ function getWinner(playerChoice, computerChoice) {
             case "paper":
                 whoWon = "player"
                 break
-            case "scissor":
+            case "scissors":
                 whoWon = "tie"
                 break
         }
@@ -130,43 +137,26 @@ function getWinner(playerChoice, computerChoice) {
 }
 
 const playRoundForRock = () => {
-    
-    cuss = getComputerChoice()
+    let cuss = getComputerChoice()
+   
     playRound('rock', cuss)
-    wi = getWinner('rock', cuss)
-    if (wi == "player") {
-        playerScore += 1
-    }
-    else if (wi == "comp") {
-        computerScore += 1
-    }
+   
+    
     r += 1
 }
 const playRoundForPaper = () => {
-    
-    cuss = getComputerChoice()
+    let cuss = getComputerChoice()
+
     playRound('paper', cuss)
-    wi = getWinner('paper', cuss)
-    if (wi == "player") {
-        playerScore += 1
-    }
-    else if (wi == "comp") {
-        computerScore += 1
-    }
+    
     r += 1
     
 }
 const playRoundForScissor = () => {
+    let cuss = getComputerChoice()
+  
+    playRound('scissors', cuss)
     
-    cuss = getComputerChoice()
-    playRound('scissor', cuss)
-    wi = getWinner('scissor', cuss)
-    if (wi == "player") {
-        playerScore += 1
-    }
-    else if (wi == "comp") {
-        computerScore += 1
-    }
     r += 1
 }
 
